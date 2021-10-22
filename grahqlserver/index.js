@@ -1,35 +1,11 @@
 const {ApolloServer} = require ('apollo-server');
-const {gql} = require ('graphql-tag');
 const mongoose = require('mongoose');
 const { MONGODB } = require('./config');
-const Posts = require('./models/Posts');
 
-const typeDefs = gql`
-    type Post{
-        id: ID!
-        body: String!,
-        username: String!,
-        createdAt: String!
-    }
-    type Query{
-        getPosts : [Post]
-    }
-`;
 
-const resolvers = {
-    Query : {
-        async getPosts() {
-            try {
-                const posts = await Posts.find();
-                return posts;
-                
-            } catch (error) {
-                throw new Error(error);
-                
-            }
-        }
-    }
-}
+const typeDefs = require ('./typeDefs')
+const resolvers = require('./resolvers')
+
 
 const server = new ApolloServer({
     typeDefs,
