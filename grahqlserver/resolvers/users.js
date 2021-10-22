@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server');
 
 const User = require('../models/users');
+const {validateRegisterInput} = require ('../utils/validators')
+
 const { SECRET_KEY } = require('../config');
 
 
@@ -30,9 +32,20 @@ module.exports = {
           registerInput: { username, email, password, confirmPassword }
         }
       ) {
-        // Validate user data
 
-        // TODO: Make sure user doesnt already exist
+        // 1. Validate user data
+        const { valid, errors } = validateRegisterInput(
+            username,
+            email,
+            password,
+            confirmPassword
+          );
+          if (!valid) {
+            throw new UserInputError('Errors', { errors });
+          }
+
+
+        // 2.  Make sure user doesnt already exist
         const user = await User.findOne({ username });
         if (user) {
             throw new UserInputError('Username is taken', {
@@ -42,7 +55,7 @@ module.exports = {
             });
         }
 
-        // hash password and create an auth token
+        // 3. hash password and create an auth token
         password = await bcrypt.hash(password, 12);
   
         const newUser = new User({
