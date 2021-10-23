@@ -34,3 +34,46 @@ Learn how to create a social media app using MongoDB, Express, Node, React, Grap
 🏆 Loc Do
 🏆 Joseph C
 🏆 DeezMaster
+
+
+Checking the code at each stage for example :
+
+1) You are current active branch is 2d-RegisterUserCreationFieldsValidation
+
+╭─anidhula@WKMIN4455173 ~/happaada/nextjs-fe-mongogql/merng_freecodecamp/grahqlserver  ‹2d-RegisterUserCreationFieldsValidation›
+
+
+2) check the status of all code changes
+git status
+On branch 2d-RegisterUserCreationFieldsValidation
+Your branch is up to date with 'origin/2d-RegisterUserCreationFieldsValidation'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   resolvers/users.js
+	modified:   typeDefs.js
+	modified:   utils/validators.js
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+3) Add all changes to commit
+git add .
+
+4) Commit all changes
+
+git commit -m "Final Code for Register and Login"
+
+[2d-RegisterUserCreationFieldsValidation 68c2922] Final Code for Register and Login
+ 3 files changed, 47 insertions(+), 1 deletion(-)
+
+
+5) Create a new branch for pushing the code
+git branch 2e-FinalCodeForRegisterAndLogin
+
+6) Switch to the branch
+
+git checkout 2e-FinalCodeForRegisterAndLogin
+
+Switched to branch '2e-FinalCodeForRegisterAndLogin'
