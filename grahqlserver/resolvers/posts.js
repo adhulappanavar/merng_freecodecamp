@@ -1,5 +1,6 @@
 
 const Post = require('../models/Posts');
+const checkAuth = require('../utils/check-auth');
 
 module.exports = {
   Query: {
@@ -22,6 +23,27 @@ module.exports = {
       } catch (err) {
         throw new Error(err);
       }
+    }
+  },
+  Mutation: {
+    async createPost(_, { body }, context) {
+      const user = checkAuth(context);
+      console.log(user);
+
+      // if (args.body.trim() === '') {
+      //   throw new Error('Post body must not be empty');
+      // }
+
+      const newPost = new Post({
+        body,
+        user: user.id,
+        username: user.username,
+        createdAt: new Date().toISOString()
+      });
+
+      const post = await newPost.save();
+
+      return post;
     }
   }
 };
